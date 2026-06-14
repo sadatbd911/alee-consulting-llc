@@ -75,7 +75,7 @@ export function BookingForm() {
 
     const url =
       (import.meta.env.VITE_WEBHOOK_URL as string | undefined) ||
-      "https://n8n.srv1106977.hstgr.cloud/webhook/cleaning-booking";
+      "https://n8n.srv1106977.hstgr.cloud/webhook-test/cleaning-booking";
     setStatus("loading");
     try {
       if (!url) throw new Error("Missing VITE_WEBHOOK_URL");
