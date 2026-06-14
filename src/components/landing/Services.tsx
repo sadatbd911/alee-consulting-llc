@@ -23,8 +23,8 @@ const services = [
   },
   {
     image: driveImg,
-    name: "Office Driveways",
-    desc: "Pressure washing for office driveways, parking lots, and walkways.",
+    name: "Pressure Wash",
+    desc: "Professional pressure washing for driveways, parking lots, and walkways.",
   },
 ];
 
