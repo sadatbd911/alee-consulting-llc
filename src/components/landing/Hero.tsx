@@ -1,5 +1,5 @@
 import { ArrowRight, Calendar } from "lucide-react";
-import heroImage from "@/assets/hero-clean.jpg.asset.json";
+import heroImage from "@/assets/hero-clean.jpg";
 
 export function Hero() {
   return (
@@ -34,7 +34,7 @@ export function Hero() {
         </div>
         <div className="relative mt-12 w-full max-w-4xl overflow-hidden rounded-2xl border border-border shadow-2xl shadow-primary/10">
           <img
-            src={heroImage.url}
+            src={heroImage}
             alt="Pressure washing revealing the word CLEAN on pavers"
             width={960}
             height={672}
