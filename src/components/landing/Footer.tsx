@@ -51,7 +51,6 @@ export function Footer() {
   className="hover:text-green-400 text-green-500 inline-flex items-center gap-1.5"
 >
   WhatsApp
-</a>
               </a>
             </li>
             <li>
