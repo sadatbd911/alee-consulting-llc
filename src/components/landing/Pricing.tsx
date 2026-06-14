@@ -128,7 +128,7 @@ export function Pricing() {
                 <span className="text-4xl font-extrabold text-foreground">
                   ${SERVICE_LEVEL_PRICING.standard.rate.toFixed(2)}
                 </span>
-                <span className="text-sm text-muted-foreground">/ sq ft</span>
+                <span className="text-sm text-muted-foreground">/ sft</span>
               </div>
               <p className="mt-3 text-sm text-muted-foreground">
                 Routine cleaning that keeps your space fresh, tidy, and inviting.
@@ -148,7 +148,7 @@ export function Pricing() {
                 <span className="text-4xl font-extrabold text-foreground">
                   ${SERVICE_LEVEL_PRICING.deep.rate.toFixed(2)}
                 </span>
-                <span className="text-sm text-muted-foreground">/ sq ft</span>
+                <span className="text-sm text-muted-foreground">/ sft</span>
               </div>
               <p className="mt-3 text-sm text-muted-foreground">
                 Top-to-bottom sanitization, detailed scrubbing, and full restoration.
@@ -167,7 +167,7 @@ export function Pricing() {
                 <span className="text-xl font-bold text-foreground">
                   Ask for a Bundle Price
                 </span>
-                <span className="text-sm text-muted-foreground">/ sq ft</span>
+                <span className="text-sm text-muted-foreground">/ sft</span>
               </div>
               <p className="mt-3 text-sm text-muted-foreground">
                 Have multiple offices or locations? Bundle them together for a custom rate — more spaces, better savings.
