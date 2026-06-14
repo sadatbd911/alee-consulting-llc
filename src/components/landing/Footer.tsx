@@ -1,4 +1,4 @@
-import logoAsset from "@/assets/alee-logo.png.asset.json";
+import logoAsset from "@/assets/alee-logo.png";
 
 const links = [
   { href: "#services", label: "Services" },
@@ -13,7 +13,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-3">
         <div>
           <img
-            src={logoAsset.url}
+            src={logoAsset}
             alt="Alee Consulting LLC"
             className="h-12 w-auto"
             loading="lazy"
