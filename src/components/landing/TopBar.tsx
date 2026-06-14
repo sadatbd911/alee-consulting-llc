@@ -4,7 +4,7 @@ export function TopBar() {
   return (
     <div className="bg-surface border-b border-border text-xs">
       <div className="mx-auto flex max-w-7xl items-center justify-center gap-4 px-4 py-2">
-        
+        <a
           href="tel:4079635157"
           className="inline-flex items-center gap-2 text-primary transition-colors hover:text-primary-hover"
         >
@@ -12,7 +12,7 @@ export function TopBar() {
           407-963-5157
         </a>
         <span className="text-muted-foreground">|</span>
-        
+        <a
           href="https://wa.me/14079635157"
           target="_blank"
           rel="noopener noreferrer"
