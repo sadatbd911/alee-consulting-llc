@@ -198,6 +198,7 @@ export function BookingForm() {
                     <option>Commercial</option>
                     <option>Special Events</option>
                     <option>Office Cleaning</option>
+                    <option>Move In / Move Out</option>
                   </select>
                 </Field>
                 <Field label="Service Level">
