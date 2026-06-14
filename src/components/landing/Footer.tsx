@@ -20,13 +20,12 @@ export function Footer() {
           />
           <p className="mt-3 text-sm text-muted-foreground">We Clean, You Relax.</p>
         </div>
-
         <div>
           <h4 className="text-sm font-semibold text-foreground">Quick Links</h4>
           <ul className="mt-3 space-y-2 text-sm">
             {links.map((l) => (
               <li key={l.href}>
-                <a
+                
                   href={l.href}
                   className="text-muted-foreground transition-colors hover:text-primary"
                 >
@@ -36,22 +35,22 @@ export function Footer() {
             ))}
           </ul>
         </div>
-
         <div>
           <h4 className="text-sm font-semibold text-foreground">Contact</h4>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
             <li>
-              <a href="tel:4079635157" className="hover:text-primary inline-flex items-center gap-1.5">
-  407-963-5157
-</a>
-
-  href="https://wa.me/14079635157"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="hover:text-green-400 text-green-500 inline-flex items-center gap-1.5"
->
-  WhatsApp
-</a>
+              <a href="tel:4079635157" className="hover:text-primary">
+                407-963-5157
+              </a>
+            </li>
+            <li>
+              
+                href="https://wa.me/14079635157"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-green-500 hover:text-green-400"
+              >
+                WhatsApp
               </a>
             </li>
             <li>
@@ -59,8 +58,6 @@ export function Footer() {
                 Denttech926@gmail.com
               </a>
             </li>
-            
-            
           </ul>
         </div>
       </div>
