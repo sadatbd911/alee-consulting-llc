@@ -3,7 +3,7 @@ import { useReveal } from "@/hooks/use-reveal";
 import homeImg from "@/assets/home-cleaning.jpg";
 import officeImg from "@/assets/office-cleaning.jpg";
 import eventsImg from "@/assets/special-events-cleaning.jpg";
-import driveImg from "@/assets/office-driveway.jpg";
+import driveImg from "@/assets/pressure-washing.jpg";
 
 const services = [
   {
