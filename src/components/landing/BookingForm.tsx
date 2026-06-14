@@ -7,18 +7,20 @@ type Status = "idle" | "loading" | "success" | "error";
 const inputClass =
   "w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/40";
 
+type AddressEntry = { address: string; property_size: string };
+
 export function BookingForm() {
   const [status, setStatus] = useState<Status>("idle");
-  const [addresses, setAddresses] = useState<string[]>([""]);
+  const [entries, setEntries] = useState<AddressEntry[]>([{ address: "", property_size: "" }]);
 
-  function updateAddress(i: number, value: string) {
-    setAddresses((prev) => prev.map((a, idx) => (idx === i ? value : a)));
+  function updateEntry(i: number, field: keyof AddressEntry, value: string) {
+    setEntries((prev) => prev.map((e, idx) => (idx === i ? { ...e, [field]: value } : e)));
   }
-  function addAddress() {
-    setAddresses((prev) => [...prev, ""]);
+  function addEntry() {
+    setEntries((prev) => [...prev, { address: "", property_size: "" }]);
   }
-  function removeAddress(i: number) {
-    setAddresses((prev) => (prev.length === 1 ? prev : prev.filter((_, idx) => idx !== i)));
+  function removeEntry(i: number) {
+    setEntries((prev) => (prev.length === 1 ? prev : prev.filter((_, idx) => idx !== i)));
   }
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -37,14 +39,18 @@ export function BookingForm() {
     const frequency = String(fd.get("frequency") || "");
     const planKey = frequency.toLowerCase() as PlanKey;
     const plan = PRICING[planKey];
-    const cleanedAddresses = addresses.map((a) => a.trim()).filter(Boolean);
+    const cleanedEntries = entries.filter((e) => e.address.trim());
+    const isBundle = cleanedEntries.length > 1;
+    const totalSize = cleanedEntries.reduce((sum, e) => sum + (parseInt(e.property_size) || 0), 0);
+
     const payload = {
       name: String(fd.get("name") || ""),
       email: String(fd.get("email") || ""),
       phone: String(fd.get("phone") || ""),
-      address: cleanedAddresses[0] ?? "",
-      addresses: cleanedAddresses,
-      property_size: String(fd.get("property_size") || ""),
+      address: cleanedEntries[0]?.address ?? "",
+      addresses: cleanedEntries,
+      bundle: isBundle,
+      total_property_size: isBundle ? String(totalSize) : (cleanedEntries[0]?.property_size ?? ""),
       service_type: String(fd.get("service_type") || ""),
       service_level: String(fd.get("service_level") || ""),
       frequency,
@@ -81,7 +87,7 @@ export function BookingForm() {
       if (!res.ok) throw new Error("Webhook failed");
       setStatus("success");
       form.reset();
-      setAddresses([""]);
+      setEntries([{ address: "", property_size: "" }]);
     } catch {
       setStatus("error");
     }
@@ -101,8 +107,10 @@ export function BookingForm() {
           {status === "success" ? (
             <div className="flex flex-col items-center py-10 text-center">
               <CheckCircle2 className="h-14 w-14 text-primary" />
-              <h3 className="mt-4 text-xl font-semibold text-foreground"> Booking Received! 🎉 </h3>
-              <p className="mt-2 max-w-md text-sm text-muted-foreground"> Check your email — we've sent a payment link to complete your booking. </p>
+              <h3 className="mt-4 text-xl font-semibold text-foreground">Booking Received! 🎉</h3>
+              <p className="mt-2 max-w-md text-sm text-muted-foreground">
+                Check your email — we've sent a payment link to complete your booking.
+              </p>
               <button
                 onClick={() => setStatus("idle")}
                 className="mt-6 rounded-full border border-primary px-5 py-2 text-sm font-semibold text-primary hover:bg-primary/10"
@@ -130,49 +138,40 @@ export function BookingForm() {
                   <input name="name" required className={inputClass} placeholder="Jane Doe / Acme Inc." />
                 </Field>
                 <Field label="Email Address">
-                  <input
-                    name="email"
-                    type="email"
-                    required
-                    className={inputClass}
-                    placeholder="jane@example.com"
-                  />
+                  <input name="email" type="email" required className={inputClass} placeholder="jane@example.com" />
                 </Field>
               </div>
 
               <Field label="Phone Number">
-                <input
-                  name="phone"
-                  type="tel"
-                  required
-                  className={inputClass}
-                  placeholder="(407) 555-0123"
-                />
+                <input name="phone" type="tel" required className={inputClass} placeholder="(407) 555-0123" />
               </Field>
 
+              {/* Address + Property Size per entry */}
               <div>
                 <span className="mb-1.5 block text-xs font-medium text-muted-foreground">
-                  Address{addresses.length > 1 ? "es" : ""}
+                  Address{entries.length > 1 ? "es" : ""} & Property Size
                 </span>
-                <div className="space-y-2">
-                  {addresses.map((addr, i) => (
-                    <div key={i} className="flex gap-2">
+                <div className="space-y-3">
+                  {entries.map((entry, i) => (
+                    <div key={i} className="flex flex-col gap-2 sm:flex-row sm:items-start">
                       <input
-                        value={addr}
-                        onChange={(e) => updateAddress(i, e.target.value)}
+                        value={entry.address}
+                        onChange={(e) => updateEntry(i, "address", e.target.value)}
                         required
                         className={inputClass}
-                        placeholder={
-                          i === 0
-                            ? "123 Main St, Clermont, FL"
-                            : `Additional office address #${i + 1}`
-                        }
+                        placeholder={i === 0 ? "123 Main St, Clermont, FL" : `Office address #${i + 1}`}
                       />
-                      {addresses.length > 1 && (
+                      <input
+                        value={entry.property_size}
+                        onChange={(e) => updateEntry(i, "property_size", e.target.value)}
+                        className={`${inputClass} sm:w-36 shrink-0`}
+                        placeholder="Size (sft)"
+                      />
+                      {entries.length > 1 && (
                         <button
                           type="button"
-                          onClick={() => removeAddress(i)}
-                          aria-label="Remove address"
+                          onClick={() => removeEntry(i)}
+                          aria-label="Remove"
                           className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border text-muted-foreground hover:border-destructive hover:text-destructive"
                         >
                           <X className="h-4 w-4" />
@@ -183,7 +182,7 @@ export function BookingForm() {
                 </div>
                 <button
                   type="button"
-                  onClick={addAddress}
+                  onClick={addEntry}
                   className="mt-2 inline-flex items-center gap-1.5 rounded-full border border-primary/60 px-3 py-1.5 text-xs font-semibold text-primary hover:bg-primary/10"
                 >
                   <Plus className="h-3.5 w-3.5" />
@@ -191,21 +190,10 @@ export function BookingForm() {
                 </button>
               </div>
 
-              <Field label="Property Size / sft">
-                <input
-                  name="property_size"
-                  type="text"
-                  className={inputClass}
-                  placeholder="e.g. 1500"
-                />
-              </Field>
-
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field label="Service Type">
                   <select name="service_type" required className={inputClass} defaultValue="">
-                    <option value="" disabled>
-                      Select a service
-                    </option>
+                    <option value="" disabled>Select a service</option>
                     <option>Residential</option>
                     <option>Commercial</option>
                     <option>Special Events</option>
@@ -214,20 +202,17 @@ export function BookingForm() {
                 </Field>
                 <Field label="Service Level">
                   <select name="service_level" required className={inputClass} defaultValue="">
-                    <option value="" disabled>
-                      Select service level
-                    </option>
+                    <option value="" disabled>Select service level</option>
                     <option>Standard Cleaning</option>
                     <option>Deep Cleaning</option>
+                    <option>Bundle Cleaning</option>
                   </select>
                 </Field>
               </div>
 
               <Field label="Cleaning Frequency">
                 <select name="frequency" required className={inputClass} defaultValue="">
-                  <option value="" disabled>
-                    Select frequency
-                  </option>
+                  <option value="" disabled>Select frequency</option>
                   <option>One-Time</option>
                   <option>Daily</option>
                   <option>Weekly</option>
