@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import logoAsset from "@/assets/alee-logo.png.asset.json";
+import logoAsset from "@/assets/alee-logo.png";
 
 const links = [
   { href: "#services", label: "Services" },
@@ -29,7 +29,7 @@ export function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
         <a href="#top" className="flex items-center gap-2">
           <img
-            src={logoAsset.url}
+            src={logoAsset}
             alt="Alee Consulting LLC"
             className="h-10 w-auto md:h-12"
             loading="eager"
