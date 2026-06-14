@@ -346,7 +346,7 @@ export function Pricing() {
               Pay only for the space you need cleaned.
             </p>
           </div>
-          <div className="mx-auto mt-8 grid max-w-3xl gap-5 sm:grid-cols-2">
+          <div className="mx-auto mt-8 grid max-w-3xl gap-5 sm:grid-cols-3">
             <div className="group relative overflow-hidden rounded-2xl border border-border bg-surface-2 p-7 transition-all hover:-translate-y-1 hover:border-primary/60">
               <div className="flex items-center gap-3">
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
