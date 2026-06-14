@@ -1,23 +1,16 @@
 import logoAsset from "@/assets/alee-logo.png";
-
 const links = [
   { href: "#services", label: "Services" },
   { href: "#pricing", label: "Pricing" },
   { href: "#book", label: "Book Now" },
   { href: "#contact", label: "Contact" },
 ];
-
 export function Footer() {
   return (
     <footer className="border-t-2 border-primary/40 bg-surface">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-3">
         <div>
-          <img
-            src={logoAsset}
-            alt="Alee Consulting LLC"
-            className="h-12 w-auto"
-            loading="lazy"
-          />
+          <img src={logoAsset} alt="Alee Consulting LLC" className="h-12 w-auto" loading="lazy" />
           <p className="mt-3 text-sm text-muted-foreground">We Clean, You Relax.</p>
         </div>
         <div>
@@ -25,10 +18,7 @@ export function Footer() {
           <ul className="mt-3 space-y-2 text-sm">
             {links.map((l) => (
               <li key={l.href}>
-                
-                  href={l.href}
-                  className="text-muted-foreground transition-colors hover:text-primary"
-                >
+                <a href={l.href} className="text-muted-foreground transition-colors hover:text-primary">
                   {l.label}
                 </a>
               </li>
@@ -44,12 +34,7 @@ export function Footer() {
               </a>
             </li>
             <li>
-              
-                href="https://wa.me/14079635157"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-green-500 hover:text-green-400"
-              >
+              <a href="https://wa.me/14079635157" target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-400">
                 WhatsApp
               </a>
             </li>
@@ -63,7 +48,7 @@ export function Footer() {
       </div>
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-4 py-5 text-center text-xs text-muted-foreground">
-          © 2026 Alee Consulting LLC. All rights reserved.
+          2026 Alee Consulting LLC. All rights reserved.
         </div>
       </div>
     </footer>
