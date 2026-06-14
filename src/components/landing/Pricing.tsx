@@ -114,7 +114,7 @@ export function Pricing() {
               Pay only for the space you need cleaned.
             </p>
           </div>
-          <div className="mx-auto mt-8 grid max-w-3xl gap-5 sm:grid-cols-2">
+          <div className="mx-auto mt-8 grid max-w-5xl gap-5 sm:grid-cols-3">
             <div className="group relative overflow-hidden rounded-2xl border border-border bg-surface-2 p-7 transition-all hover:-translate-y-1 hover:border-primary/60">
               <div className="flex items-center gap-3">
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
@@ -157,6 +157,25 @@ export function Pricing() {
           </div>
         </div>
       </div>
+      <div className="group relative overflow-hidden rounded-2xl border border-border bg-surface-2 p-7 transition-all hover:-translate-y-1 hover:border-primary/60">
+  <div className="flex items-center gap-3">
+    <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+      <Sparkles className="h-5 w-5" />
+    </span>
+    <h4 className="text-lg font-semibold text-foreground">
+      Bundle Cleaning
+    </h4>
+  </div>
+  <div className="mt-5 flex items-baseline gap-1">
+    <span className="text-xl font-bold text-foreground">
+      Ask for a Bundle Price
+    </span>
+    <span className="text-sm text-muted-foreground">/ sq ft</span>
+  </div>
+  <p className="mt-3 text-sm text-muted-foreground">
+    Have multiple offices or locations? Bundle them together for a custom rate — more spaces, better savings.
+  </p>
+</div>
     </section>
   );
 }
