@@ -1,8 +1,12 @@
 export type PlanKey = "daily" | "weekly" | "monthly";
-export const PRICING: Record
-  PlanKey,
-  { name: string; price: number | string; period: string; displayPrice: string; webhookPrice: number | string }
-> = {
+
+export const SERVICE_LEVEL_PRICING: Record<string, { amount: number | string; label: string }> = {
+  "Standard Cleaning": { amount: 0.15, label: "$0.15/sq ft" },
+  "Deep Cleaning": { amount: 0.25, label: "$0.25/sq ft" },
+  "Bundle Cleaning": { amount: "Ask for a Bundle Price", label: "Ask for a Bundle Price" },
+};
+
+export const PRICING: Record<PlanKey, { name: string; price: number | string; period: string; displayPrice: string; webhookPrice: number | string }> = {
   daily: {
     name: "Daily Cleaning",
     price: 75,
@@ -24,8 +28,4 @@ export const PRICING: Record
     displayPrice: "Contact Us for a Free Estimate",
     webhookPrice: "Contact us monthly",
   },
-};
-export const SERVICE_LEVEL_PRICING = {
-  standard: { name: "Standard Cleaning", rate: 0.15, unit: "sq ft" },
-  deep: { name: "Deep Cleaning", rate: 0.25, unit: "sq ft" },
 };
