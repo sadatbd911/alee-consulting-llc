@@ -40,6 +40,13 @@ export function BookingForm() {
     const frequency = String(fd.get("frequency") || "");
     const planKey = frequency.toLowerCase() as PlanKey;
     const plan = PRICING[planKey];
+    const selectedServiceLevel = String(fd.get("service_level") || "");
+const levelMap: Record<string, { amount: number | string; label: string }> = {
+  "Standard Cleaning": { amount: SERVICE_LEVEL_PRICING.standard.rate, label: SERVICE_LEVEL_PRICING.standard.webhookLabel },
+  "Deep Cleaning":     { amount: SERVICE_LEVEL_PRICING.deep.rate,     label: SERVICE_LEVEL_PRICING.deep.webhookLabel },
+  "Bundle Cleaning":   { amount: "Ask for a Bundle Price",             label: "Ask for a Bundle Price" },
+};
+const serviceLevelPrice = levelMap[selectedServiceLevel] ?? null;
 
     const selectedServiceLevel = String(fd.get("service_level") || "");
     const serviceLevelPrice = SERVICE_LEVEL_PRICING[selectedServiceLevel] ?? null;
@@ -60,6 +67,7 @@ export function BookingForm() {
       service_level: selectedServiceLevel,
       service_level_price: serviceLevelPrice?.amount ?? null,
       service_level_price_label: serviceLevelPrice?.label ?? null,
+      
       frequency,
       preferred_date: String(fd.get("preferred_date") || ""),
       preferred_time: formatTime(rawTime),
