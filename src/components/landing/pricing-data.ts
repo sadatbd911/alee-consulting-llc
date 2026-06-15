@@ -6,10 +6,7 @@ export const SERVICE_LEVEL_PRICING: Record<string, { amount: number | string; la
   "Bundle Cleaning":   { amount: "Ask for a Bundle Price", label: "Ask for a Bundle Price" },
 };
 
-export const PRICING: Record
-  PlanKey,
-  { name: string; price: number | string; period: string; displayPrice: string; webhookPrice: number | string }
-> = {
+export const PRICING: Record<PlanKey,{ name: string; price: number | string; period: string; displayPrice: string; webhookPrice: number | string }> = {
   daily: {
     name: "Daily Cleaning",
     price: 75,
