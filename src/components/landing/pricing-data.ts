@@ -4,9 +4,9 @@ export const SERVICE_LEVEL_PRICING: Record
   string,
   { amount: number | string; label: string }
 > = {
-  "Standard Cleaning": { amount: 0.15,                    label: "$0.15/sq ft" },
-  "Deep Cleaning":     { amount: 0.25,                    label: "$0.25/sq ft" },
-  "Bundle Cleaning":   { amount: "Ask for a Bundle Price", label: "Ask for a Bundle Price" },
+  "Standard Cleaning": { amount: 0.15,                     label: "$0.15/sq ft" },
+  "Deep Cleaning":     { amount: 0.25,                     label: "$0.25/sq ft" },
+  "Bundle Cleaning":   { amount: "Ask for a Bundle Price",  label: "Ask for a Bundle Price" },
 };
 
 export const PRICING: Record
