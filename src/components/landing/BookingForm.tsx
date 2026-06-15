@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { CheckCircle2, Loader2, AlertCircle, Plus, X } from "lucide-react";
-import { PRICING, SERVICE_LEVEL_PRICING, type PlanKey } from "./pricing-data";
+import { PRICING, type PlanKey } from "./pricing-data";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -36,14 +36,9 @@ export function BookingForm() {
       const h12 = h % 12 === 0 ? 12 : h % 12;
       return `${h12}:${mStr} ${period}`;
     };
-
     const frequency = String(fd.get("frequency") || "");
     const planKey = frequency.toLowerCase() as PlanKey;
     const plan = PRICING[planKey];
-
-    const selectedServiceLevel = String(fd.get("service_level") || "");
-    const serviceLevelPrice = SERVICE_LEVEL_PRICING[selectedServiceLevel] ?? null;
-
     const cleanedEntries = entries.filter((e) => e.address.trim());
     const isBundle = cleanedEntries.length > 1;
     const totalSize = cleanedEntries.reduce((sum, e) => sum + (parseInt(e.property_size) || 0), 0);
@@ -57,9 +52,7 @@ export function BookingForm() {
       bundle: isBundle,
       total_property_size: isBundle ? String(totalSize) : (cleanedEntries[0]?.property_size ?? ""),
       service_type: String(fd.get("service_type") || ""),
-      service_level: selectedServiceLevel,
-      service_level_price: serviceLevelPrice?.amount ?? null,
-      service_level_price_label: serviceLevelPrice?.label ?? null,
+      service_level: String(fd.get("service_level") || ""),
       frequency,
       preferred_date: String(fd.get("preferred_date") || ""),
       preferred_time: formatTime(rawTime),
@@ -73,8 +66,8 @@ export function BookingForm() {
           : `${plan.webhookPrice}`
         : null,
       pricing: {
-        daily:   { amount: PRICING.daily.webhookPrice,   period: PRICING.daily.period },
-        weekly:  { amount: PRICING.weekly.webhookPrice,  period: PRICING.weekly.period },
+        daily: { amount: PRICING.daily.webhookPrice, period: PRICING.daily.period },
+        weekly: { amount: PRICING.weekly.webhookPrice, period: PRICING.weekly.period },
         monthly: { amount: PRICING.monthly.webhookPrice, period: PRICING.monthly.period },
       },
       submitted_at: new Date().toISOString(),
@@ -83,7 +76,6 @@ export function BookingForm() {
     const url =
       (import.meta.env.VITE_WEBHOOK_URL as string | undefined) ||
       "https://n8n.srv1106977.hstgr.cloud/webhook-test/cleaning-booking";
-
     setStatus("loading");
     try {
       if (!url) throw new Error("Missing VITE_WEBHOOK_URL");
@@ -154,6 +146,7 @@ export function BookingForm() {
                 <input name="phone" type="tel" required className={inputClass} placeholder="(407) 555-0123" />
               </Field>
 
+              {/* Address + Property Size per entry */}
               <div>
                 <span className="mb-1.5 block text-xs font-medium text-muted-foreground">
                   Address{entries.length > 1 ? "es" : ""} & Property Size
