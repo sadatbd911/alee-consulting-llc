@@ -48,8 +48,7 @@ const levelMap: Record<string, { amount: number | string; label: string }> = {
 };
 const serviceLevelPrice = levelMap[selectedServiceLevel] ?? null;
 
-    const selectedServiceLevel = String(fd.get("service_level") || "");
-    const serviceLevelPrice = SERVICE_LEVEL_PRICING[selectedServiceLevel] ?? null;
+    
 
     const cleanedEntries = entries.filter((e) => e.address.trim());
     const isBundle = cleanedEntries.length > 1;
