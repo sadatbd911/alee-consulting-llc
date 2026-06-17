@@ -71,6 +71,7 @@ const serviceLevelPrice = levelMap[selectedServiceLevel] ?? null;
       preferred_date: String(fd.get("preferred_date") || ""),
       preferred_time: formatTime(rawTime),
       special_requests: String(fd.get("special_requests") || ""),
+      referral_source: String(fd.get("referral_source") || ""),
       plan_name: plan?.name ?? null,
       price: plan?.webhookPrice ?? null,
       price_period: plan?.period ?? null,
@@ -243,6 +244,18 @@ const serviceLevelPrice = levelMap[selectedServiceLevel] ?? null;
                   <input name="preferred_time" type="time" required className={inputClass} />
                 </Field>
               </div>
+
+              <Field label="How did you hear about us?">
+  <select name="referral_source" className={inputClass} defaultValue="">
+    <option value="" disabled>Select an option</option>
+    <option>Google Search</option>
+    <option>Facebook</option>
+    <option>Instagram</option>
+    <option>Friend / Family Referral</option>
+    <option>Flyer / Poster</option>
+    <option>Other</option>
+  </select>
+</Field>
 
               <Field label="Special Requests">
                 <textarea
