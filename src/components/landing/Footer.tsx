@@ -12,6 +12,8 @@ export function Footer() {
         <div>
           <img src={logoAsset} alt="Alee Consulting LLC" className="h-12 w-auto" loading="lazy" />
           <p className="mt-3 text-sm text-muted-foreground">We Clean, You Relax.</p>
+          <p className="mt-3 text-sm text-muted-foreground">2049 Victoria Falls Dr
+Orlando, FL.</p>
         </div>
         <div>
           <h4 className="text-sm font-semibold text-foreground">Quick Links</h4>
