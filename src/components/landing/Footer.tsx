@@ -40,7 +40,7 @@ export function Footer() {
             </li>
             <li>
               <a href="mailto:Denttech926@gmail.com" className="hover:text-primary">
-                Denttech926@gmail.com
+                info@aleeconsultingllc.com
               </a>
             </li>
           </ul>
