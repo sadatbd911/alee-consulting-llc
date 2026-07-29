@@ -42,7 +42,7 @@ export function Contact() {
                 </span>
               </a>
               <a
-                href="mailto:Denttech926@gmail.com"
+                href="mailto:info@aleeconsultingllc.com"
                 className="flex items-start gap-3 text-foreground transition-colors hover:text-primary"
               >
                 <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -50,7 +50,7 @@ export function Contact() {
                 </span>
                 <span>
                   <span className="block text-xs text-muted-foreground">Email us</span>
-                  <span className="text-base font-semibold">Denttech926@gmail.com</span>
+                  <span className="text-base font-semibold">info@aleeconsultingllc.com</span>
                 </span>
               </a>
             </div>
