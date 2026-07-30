@@ -125,7 +125,7 @@ const serviceLevelPrice = levelMap[selectedServiceLevel] ?? null;
               <CheckCircle2 className="h-14 w-14 text-primary" />
               <h3 className="mt-4 text-xl font-semibold text-foreground">Booking Received! 🎉</h3>
               <p className="mt-2 max-w-md text-sm text-muted-foreground">
-                Check your email — we've sent a payment link to complete your booking.
+                We’ll be in touch shortly to get started on your complimentary estimate proposal.
               </p>
               <button
                 onClick={() => setStatus("idle")}
