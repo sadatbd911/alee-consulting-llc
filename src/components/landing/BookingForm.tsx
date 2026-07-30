@@ -123,7 +123,8 @@ const serviceLevelPrice = levelMap[selectedServiceLevel] ?? null;
           {status === "success" ? (
             <div className="flex flex-col items-center py-10 text-center">
               <CheckCircle2 className="h-14 w-14 text-primary" />
-              <h3 className="mt-4 text-xl font-semibold text-foreground">Booking Received! 🎉</h3>
+              <h3 className="mt-4 text-xl font-semibold text-foreground">Free Estimate Request Received! 🎉
+</h3>
               <p className="mt-2 max-w-md text-sm text-muted-foreground">
                 We’ll be in touch shortly to get started on your complimentary estimate proposal.
               </p>
